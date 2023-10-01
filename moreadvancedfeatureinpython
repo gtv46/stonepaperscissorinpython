@@ -1,0 +1,45 @@
+import random
+
+# Define the valid choices and their interactions
+choices = ["rock", "paper", "scissors", "lizard", "spock"]
+winning_combinations = {
+    "rock": ["scissors", "lizard"],
+    "paper": ["rock", "spock"],
+    "scissors": ["paper", "lizard"],
+    "lizard": ["spock", "paper"],
+    "spock": ["rock", "scissors"],
+}
+
+# Initialize scores
+user_score = 0
+computer_score = 0
+
+def get_user_choice():
+    while True:
+        user_choice = input("Choose Rock, Paper, Scissors, Lizard, or Spock: ").lower()
+        if user_choice in choices:
+            return user_choice
+        else:
+            print("Invalid choice. Please choose a valid option.")
+
+def get_computer_choice():
+    return random.choice(choices)
+
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "It's a tie!", 0
+    elif computer_choice in winning_combinations[user_choice]:
+        return "You win!", 1
+    else:
+        return "Computer wins!", -1
+
+def play_game():
+    global user_score, computer_score
+    print("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
+
+    while True:
+        user_choice = get_user_choice()
+        computer_choice = get_computer_choice()
+
+        print(f"You chose {user_choice}.")
+        print(f"Computer chose
